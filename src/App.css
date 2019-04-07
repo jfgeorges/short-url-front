@@ -97,9 +97,8 @@ form button {
   width: 100%;
   border-bottom: 1px solid var(--main-grey-border);
 }
-.urlListItem .originalUrl,
-.urlListItem .shortUrl,
-.urlListItem .far {
+.link,
+button {
   cursor: pointer;
 }
 .bgcolor {
