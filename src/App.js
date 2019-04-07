@@ -8,13 +8,12 @@ class App extends Component {
   state = {
     urlInput: "",
     urlsArray: null,
-    serverPath: "",
     isLoading: true
   };
   componentDidMount = async () => {
     try {
       const response = await axios.get(API_URL);
-      await this.setState({ urlsArray: response.data.shortUrlList, serverPath: response.data.serverPath, isLoading: false });
+      await this.setState({ urlsArray: response.data.shortUrlList, isLoading: false });
     } catch (error) {
       console.log(error.response);
     }
@@ -46,10 +45,13 @@ class App extends Component {
   handleButtonClick = async event => {
     event.preventDefault();
     const response = await axios.post(`${API_URL}/shortenurl`, { originalUrl: this.state.urlInput });
-    await this.setState({ urlsArray: response.data.shortUrlList });
+    await this.setState({ urlsArray: response.data.shortUrlList, urlInput: "" });
   };
 
-  handleDeleteUrl = index => {};
+  handleDeleteUrl = async shortUrl => {
+    const response = await axios.post(`${API_URL}/deleteurl`, { shortUrl: shortUrl });
+    await this.setState({ urlsArray: response.data.shortUrlList });
+  };
 
   renderUrlList = () => {
     if (this.state.isLoading === false && this.state.urlsArray.length > 0) {
@@ -59,7 +61,16 @@ class App extends Component {
           <div className="listHeader shortUrl">Short Url</div>
           <div className="listHeader visits">Visits</div>
           {this.state.urlsArray.map((urlObj, i) => {
-            return <ShortUrl {...urlObj} serverPath={this.state.serverPath} index={i} handleUrlClick={this.handleUrlClick} key={i} />;
+            return (
+              <ShortUrl
+                {...urlObj}
+                api_url={API_URL + "/"}
+                index={i}
+                handleUrlClick={this.handleUrlClick}
+                handleDeleteUrl={this.handleDeleteUrl}
+                key={i}
+              />
+            );
           })}
         </div>
       );

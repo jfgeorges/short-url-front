@@ -15,8 +15,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* font-family: "Roboto", Arial, Helvetica, sans-serif;
-  /* height: 100vh; */
 
 header {
   height: 200px;
@@ -67,70 +65,71 @@ form button {
   align-content: space-between;
   flex-wrap: wrap;
 }
-.urlListContainer .listHeader {
+.listHeader {
   display: flex;
   color: var(--main-grey);
   background-color: var(--list-bg-header);
   margin-bottom: 10px;
 }
-.urlListContainer .originalUrl,
+
+.originalUrl,
 .shortUrl {
   flex: 35%;
-  min-width: 250px;
+  min-width: 250 px;
   padding: 15px 0px 15px 16px;
 }
-.urlListContainer .visits {
+.visits {
   display: flex;
-  flex: 5%;
+  flex: 3%;
   justify-content: flex-end;
   min-width: 50px;
   padding: 15px 16px;
 }
-.urlListContainer .visits i {
+.visits i {
   margin-left: 16px;
   color: var(--main-grey-border);
 }
-.urlListContainer .visits i:hover {
+.visits i:hover {
   font-weight: bold;
   color: #dc143c;
 }
-.urlListIem {
-  display: flex;
-  flex: 1;
+.bottom-line {
+  width: 100%;
   border-bottom: 1px solid var(--main-grey-border);
+}
+.urlListItem .originalUrl,
+.urlListItem .shortUrl,
+.urlListItem .far {
+  cursor: pointer;
 }
 .bgcolor {
   color: var(--header-bg-color);
 }
 
-@media (max-width: 790px) {
+@media (max-width: 807px) {
   form button {
     margin-top: 10px;
   }
 }
 @media (max-width: 775px) {
-  .urlListContainer .originalUrl {
-    flex: 1;
-  }
-  .urlListContainer .shortUrl {
-    flex: 80%;
+  .originalUrl,
+  .shortUrl {
+    flex: 50%;
   }
 }
-@media (max-width: 630px) {
+@media (max-width: 650px) {
+  form input,
   form button {
     width: 100%;
   }
-  .urlListContainer .originalUrl,
-  .urlListContainer .shortUrl,
-  .urlListContainer .visits {
+  .originalUrl,
+  .shortUrl,
+  .visits {
     padding: 3px 0px 6px 3px;
   }
 }
-@media (max-width: 530px) {
-  .urlListContainer .shortUrl {
-    flex: 1;
-  }
-  .urlListContainer .visits {
+@media (max-width: 600px) {
+  .visits {
     flex: 90%;
     justify-content: flex-start;
   }
