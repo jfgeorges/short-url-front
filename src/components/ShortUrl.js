@@ -3,7 +3,6 @@ import React from "react";
 const ShortUrl = props => {
   return (
     <>
-      {/* <div className="urlListItem"> */}
       <div className="originalUrl" onClick={() => props.handleUrlClick(props.index, props.shortUrl)}>
         {props.originalUrl}
       </div>
